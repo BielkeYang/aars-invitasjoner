@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Høstfest mini-site" description="Multi-page invitation site for Aars Høstfest — dark green, artwork-led hero, framed footer, RSVP." -->
+<helmet><script src="./ds-base.js"></script><style>body{margin:0}*{box-sizing:border-box}</style></helmet>
+<div style="width:100%;min-height:100vh;background:#203433;padding:0 0 37px 0;font-family:'Tiempos Text',Georgia,serif;-webkit-font-smoothing:antialiased">
+<div style="max-width:1280px;margin:0 auto;padding:0 30px;display:flex;flex-direction:column;gap:120px">
+
+<div style="display:flex;flex-direction:row;padding:30px 0;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:row;gap:15px;align-items:flex-start">
+<a href="#" onClick="{{ goInvitasjon }}" style="font-size:20px;line-height:24px;color:#F6EFEA;white-space:nowrap;text-decoration:none;opacity:0.6" style-hover="opacity:1">Invitasjon</a>
+<a href="#" onClick="{{ goProgram }}" style="font-size:20px;line-height:24px;color:#F6EFEA;white-space:nowrap;text-decoration:none;opacity:0.6" style-hover="opacity:1">Kvelden</a>
+<a href="#" onClick="{{ goPraktisk }}" style="font-size:20px;line-height:24px;color:#F6EFEA;white-space:nowrap;text-decoration:none;opacity:0.6" style-hover="opacity:1">Praktisk</a>
+</div>
+<a href="#" onClick="{{ goRsvp }}" style="background:#DF6A00;display:flex;flex-direction:row;gap:3px;padding:3px 6px;justify-content:center;align-items:center;text-decoration:none;flex-shrink:0" style-hover="opacity:0.85"><span style="font-size:18px;line-height:24px;color:#fff;white-space:nowrap">RSVP her</span><span style="font-size:15px;line-height:24px;color:#fff">↗</span></a>
+</div>
+
+<sc-if value="{{ isInvitasjon }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:row;gap:30px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+<div style="width:583.367px;max-width:100%;display:flex;flex-direction:column;justify-content:space-between;gap:120px">
+<div style="display:flex;flex-direction:column;gap:15px">
+<span style="font-size:20px;line-height:24px;color:#F6EFEA">13. oktober  kl. 16:00-21:00</span>
+<span style="font-size:20px;line-height:24px;color:#F6EFEA">Bygdøy allé 4,  Oslo</span>
+<a href="#" onClick="{{ goRsvp }}" style="align-self:flex-start;background:#DF6A00;display:flex;flex-direction:row;gap:3px;padding:3px 6px;justify-content:center;align-items:center;text-decoration:none" style-hover="opacity:0.85"><span style="font-size:18px;line-height:24px;color:#fff;white-space:nowrap">RSVP her</span><span style="font-size:15px;line-height:24px;color:#fff">↗</span></a>
+<span style="font-size:12px;line-height:21px;color:#5E6D6C">Innen {{ rsvpDeadline }}</span>
+</div>
+<div style="display:flex;flex-direction:row;gap:5px;justify-content:flex-end;align-items:flex-start"><span style="font-size:14px;line-height:18px;color:#627271;flex-shrink:0">→</span><span style="width:152px;font-size:14px;line-height:18px;color:#627271">Nuclear testing in Mururoa during Operation Licorne, 1970. Ukjent fotograf.<br />Chromogenic print. 39.4 x 35.2 cm.</span></div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<img src="../../assets/logo/aars-wordmark-white.svg" alt="Aars" style="width:179.928px;height:65px;object-fit:contain" />
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:90px;line-height:83px;color:#fff">Høstfest 2026<br />Tilfluktsrom</span>
+</div>
+</div>
+<img src="../../assets/events/hostfest-kunstverk.png" alt="" style="width:593px;height:790px;object-fit:cover;max-width:100%" />
+</div>
+
+<div style="display:flex;justify-content:flex-end;padding:0 30px 30px 0">
+<div style="width:593px;max-width:100%;font-size:27px;line-height:33px;color:#fff;display:flex;flex-direction:column;gap:33px">
+<p style="margin:0">Den regelstyrte verden som vi kjenner, bryter sammen.</p>
+<p style="margin:0">Overskriftene roper. Ingenting står helt stille. Og ingenting er som det var.</p>
+<p style="margin:0">Her inne har noen gjort klar et rom. Et rom med farge, varme og musikk. Et rom der maten er laget med omtanke.</p>
+<p style="margin:0">Et rom der samtaler får plass. I år bærer vi nye ord: «vi står alltid i nye tider.» Det gjør vi. Det har vi alltid gjort. Både vi og alle våre venner trenger rom som dette.</p>
+<p style="margin:0">Tirsdag 13. oktober åpner vi dørene til årets Høstfest. Ikke et sted å gjemme seg, men et sted å møtes. En kveld satt sammen med omtanke, midt i en tid som trenger det.</p>
+<p style="margin:0">Kunst fra Møller-samlingen. Musikk som løfter. Og mennesker som er ønsket.</p>
+<p style="margin:0">Kom inn.</p>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProgram }}">
+<div style="display:flex;flex-direction:column;gap:60px">
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:90px;line-height:83px;color:#fff">Kvelden</span>
+<div style="display:flex;flex-direction:row;gap:30px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+<div style="width:387px;max-width:100%"><span style="font-size:20px;line-height:24px;color:#627271">Bygdøy allé 4, Oslo<br />13. oktober, kl. 16:00–21:00</span></div>
+<div style="width:593px;max-width:100%;display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;gap:30px;padding:0 0 21px 0;border-bottom:1px solid #627271"><span style="width:120px;flex-shrink:0;font-size:20px;line-height:33px;color:#627271">16:00</span><span style="font-size:27px;line-height:33px;color:#fff">Dørene åpner</span></div>
+<div style="display:flex;flex-direction:row;gap:30px;padding:21px 0;border-bottom:1px solid #627271"><span style="width:120px;flex-shrink:0;font-size:20px;line-height:33px;color:#627271">16:30</span><span style="font-size:27px;line-height:33px;color:#fff">Omvisning i Møllersamlingen<br /><em style="font-size:20px;color:#627271">Puljer gjennom kvelden</em></span></div>
+<div style="display:flex;flex-direction:row;gap:30px;padding:21px 0;border-bottom:1px solid #627271"><span style="width:120px;flex-shrink:0;font-size:20px;line-height:33px;color:#627271">17:30</span><span style="font-size:27px;line-height:33px;color:#fff">Velkommen</span></div>
+<div style="display:flex;flex-direction:row;gap:30px;padding:21px 0;border-bottom:1px solid #627271"><span style="width:120px;flex-shrink:0;font-size:20px;line-height:33px;color:#627271">18:00</span><span style="font-size:27px;line-height:33px;color:#fff">Mat og drikke</span></div>
+<div style="display:flex;flex-direction:row;gap:30px;padding:21px 0;border-bottom:1px solid #627271"><span style="width:120px;flex-shrink:0;font-size:20px;line-height:33px;color:#627271">19:30</span><span style="font-size:27px;line-height:33px;color:#fff">Musikk</span></div>
+<div style="display:flex;flex-direction:row;gap:30px;padding:21px 0"><span style="width:120px;flex-shrink:0;font-size:20px;line-height:33px;color:#627271">21:00</span><span style="font-size:27px;line-height:33px;color:#fff">Kvelden avsluttes</span></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPraktisk }}">
+<div style="display:flex;flex-direction:column;gap:60px">
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:90px;line-height:83px;color:#fff">Praktisk</span>
+<div style="display:flex;flex-direction:row;gap:30px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+<img src="../../assets/events/hostfest-kunstverk.png" alt="" style="width:387px;height:483.75px;object-fit:cover;max-width:100%" />
+<div style="width:593px;max-width:100%;display:flex;flex-direction:column;gap:21px;font-size:20px;line-height:24px;color:#627271">
+<div style="display:flex;gap:30px;border-top:1px solid #627271;padding-top:21px"><span style="width:140px;flex-shrink:0">Når</span><span style="font-size:27px;line-height:33px;color:#fff">Tirsdag 13. oktober, kl. 16:00–21:00</span></div>
+<div style="display:flex;gap:30px;border-top:1px solid #627271;padding-top:21px"><span style="width:140px;flex-shrink:0">Hvor</span><span style="font-size:27px;line-height:33px;color:#fff">Bygdøy allé 4, 0257 Oslo</span></div>
+<div style="display:flex;gap:30px;border-top:1px solid #627271;padding-top:21px"><span style="width:140px;flex-shrink:0">Kleskode</span><span style="font-size:27px;line-height:33px;color:#fff">Pent, men uformelt</span></div>
+<div style="display:flex;gap:30px;border-top:1px solid #627271;padding-top:21px"><span style="width:140px;flex-shrink:0">Mat</span><span style="font-size:27px;line-height:33px;color:#fff">Servering gjennom hele kvelden. Oppgi allergier i påmeldingen.</span></div>
+<div style="display:flex;gap:30px;border-top:1px solid #627271;padding-top:21px"><span style="width:140px;flex-shrink:0">Transport</span><span style="font-size:27px;line-height:33px;color:#fff">Kort vei fra Solli plass. Begrenset med parkering.</span></div>
+<div style="display:flex;gap:30px;border-top:1px solid #627271;padding-top:21px"><span style="width:140px;flex-shrink:0">Spørsmål</span><span style="font-size:27px;line-height:33px;color:#fff">navn@aars.no</span></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRsvp }}">
+<div style="display:flex;flex-direction:column;gap:60px">
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:90px;line-height:83px;color:#fff">RSVP</span>
+<div style="display:flex;flex-direction:row;gap:30px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+<div style="width:387px;max-width:100%;font-size:20px;line-height:24px;color:#627271">13. oktober, kl. 16:00–21:00<br />Bygdøy allé 4, Oslo<br /><br />Svar innen {{ rsvpDeadline }}</div>
+<div style="width:593px;max-width:100%;display:flex;flex-direction:column;gap:30px">
+<sc-if value="{{ sent }}"><p style="margin:0;font-size:27px;line-height:33px;color:#DF6A00">Takk! Vi har registrert svaret ditt. Vi gleder oss til å se deg 13. oktober.</p></sc-if>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:30px">
+<label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:20px;line-height:24px;color:#627271">Navn</span><input type="text" style="border:none;border-bottom:1px solid #627271;background:transparent;padding:0 0 9px 0;font-family:'Tiempos Text',Georgia,serif;font-size:27px;line-height:33px;color:#fff;outline:none" /></label>
+<label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:20px;line-height:24px;color:#627271">E-post</span><input type="email" style="border:none;border-bottom:1px solid #627271;background:transparent;padding:0 0 9px 0;font-family:'Tiempos Text',Georgia,serif;font-size:27px;line-height:33px;color:#fff;outline:none" /></label>
+<label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:20px;line-height:24px;color:#627271">Allergier eller andre behov</span><textarea rows="3" style="border:none;border-bottom:1px solid #627271;background:transparent;padding:0 0 9px 0;font-family:'Tiempos Text',Georgia,serif;font-size:27px;line-height:33px;color:#fff;outline:none;resize:vertical"></textarea></label>
+<a href="#" onClick="{{ send }}" style="align-self:flex-start;background:#DF6A00;display:flex;flex-direction:row;gap:3px;padding:3px 6px;justify-content:center;align-items:center;text-decoration:none" style-hover="opacity:0.85"><span style="font-size:18px;line-height:24px;color:#fff;white-space:nowrap">Send påmelding</span><span style="font-size:15px;line-height:24px;color:#fff">↗</span></a>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div style="border:1px solid #627271;display:flex;flex-direction:column;gap:120px;padding:40px 0;align-items:flex-start">
+<div style="width:100%;display:flex;justify-content:center;padding:0 30px">
+<div style="width:593px;max-width:100%;display:flex;flex-direction:column;gap:30px">
+<span style="font-size:27px;line-height:33px;color:#fff">Vi håper du har anledning til å bli med. Ved spørsmål, ta gjerne kontakt med navn@aars.no</span>
+<div style="display:flex;flex-direction:row;gap:30px;align-items:flex-start;flex-wrap:wrap">
+<span style="width:176px;font-size:16.213936px;line-height:1.2;letter-spacing:-0.010em;color:#F6EFEA">Kontaktinfo<br /><br />Bygdøy Allé 4,  0257 Oslo, Norway<br /><br />info@aars.no</span>
+<span style="width:176px;font-size:16.213936px;line-height:1.2;letter-spacing:-0.010em;color:#F6EFEA">Praktisk<br /><br />LinkedIn<br />Personvern<br /><br />aars.no</span>
+<span style="width:176px;font-size:16.213936px;line-height:1.2;letter-spacing:-0.010em;color:#F6EFEA">Andre inititiver<br /><br />Møllersamlingen ↗<br />Oslo Negativ ↗</span>
+</div>
+</div>
+</div>
+<div style="width:100%;display:flex;flex-direction:row;gap:30px;padding:0 40px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap">
+<div style="padding:5px 0 13px 0"><img src="../../assets/logo/aars-wordmark-white.svg" alt="Aars" style="height:38.733px;object-fit:contain" /></div>
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:54.046452px;line-height:1.033;letter-spacing:-0.010em;color:#DF6A00;white-space:nowrap">Vi står alltid i nye tider.</span>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;rsvpDeadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;6. oktober&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Arrangement&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'invitasjon', sent: false };
+  go(page) { return (e) => { if (e) e.preventDefault(); this.setState({ page }); window.scrollTo(0, 0); }; }
+  renderVals() {
+    const p = this.state.page;
+    return {
+      rsvpDeadline: this.props.rsvpDeadline ?? '6. oktober',
+      isInvitasjon: p === 'invitasjon', isProgram: p === 'program',
+      isPraktisk: p === 'praktisk', isRsvp: p === 'rsvp',
+      sent: this.state.sent, notSent: !this.state.sent,
+      goInvitasjon: this.go('invitasjon'), goProgram: this.go('program'),
+      goPraktisk: this.go('praktisk'), goRsvp: this.go('rsvp'),
+      send: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

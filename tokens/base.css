@@ -1,0 +1,11 @@
+/* Minimal element defaults so every Aars surface starts in the brand voice. */
+:root{color-scheme:light}
+body{margin:0;font-family:var(--font-core);font-weight:var(--weight-regular);font-size:var(--type-body-size);line-height:var(--type-body-lh);color:var(--text-primary);background:var(--surface-page);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+a{color:var(--text-primary);text-decoration:none;border-bottom:1px solid currentColor;transition:opacity var(--duration-base) var(--ease-standard)}
+a:hover{opacity:.65}
+h1,h2,h3,h4{font-weight:var(--weight-regular);margin:0}
+h1{font-size:var(--type-h1-size);line-height:var(--type-h1-lh)}
+h2{font-size:var(--type-h2-size);line-height:var(--type-h2-lh)}
+h3{font-size:var(--type-h3-size);line-height:var(--type-h3-lh)}
+h4{font-size:var(--type-h4-size);line-height:var(--type-h4-lh)}
+p{margin:0}

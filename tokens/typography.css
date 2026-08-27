@@ -1,0 +1,36 @@
+/* Aars typography. One family, one weight: Tiempos Text Regular.
+   Semibold / italic exist only to create distinction inside running text.
+   Three breakpoint scales are defined in the Figma file: Desktop, Tablet, Mobil. */
+:root{
+  --font-core:"Tiempos Text",ui-serif,Georgia,"Times New Roman",serif;
+  --font-display:"Tiempos Headline","Tiempos Text",ui-serif,Georgia,serif;
+
+  --weight-regular:400;
+  --weight-semibold:600;
+
+  /* Desktop scale (1440) */
+  --type-h1-size:62px;      --type-h1-lh:74px;
+  --type-h2-size:48px;      --type-h2-lh:62px;
+  --type-h3-size:34px;      --type-h3-lh:44px;
+  --type-h4-size:28px;      --type-h4-lh:42px;   /* H4 and Ingress */
+  --type-menu-header-size:22px; --type-menu-header-lh:32px;
+  --type-menu-size:20px;    --type-menu-lh:30px;
+  --type-body-size:20px;    --type-body-lh:30px;
+  --type-caption-size:16px; --type-caption-lh:26px;
+  --type-micro-size:12px;   --type-micro-lh:18px;
+
+  /* Tablet scale (750) */
+  --type-h1-size-tablet:48px; --type-h1-lh-tablet:62px;
+  --type-h2-size-tablet:40px; --type-h2-lh-tablet:52px;
+  --type-h3-size-tablet:28px; --type-h3-lh-tablet:42px;
+  --type-h4-size-tablet:22px; --type-h4-lh-tablet:32px;
+  --type-body-size-tablet:18px; --type-body-lh-tablet:28px;
+
+  /* Mobil scale (375) */
+  --type-h1-size-mobile:40px; --type-h1-lh-mobile:50px;
+  --type-h2-size-mobile:36px; --type-h2-lh-mobile:46px;
+  --type-h3-size-mobile:28px; --type-h3-lh-mobile:42px;
+  --type-h4-size-mobile:22px; --type-h4-lh-mobile:32px;
+  --type-body-size-mobile:18px; --type-body-lh-mobile:28px;
+  --type-caption-size-mobile:16px; --type-caption-lh-mobile:26px;
+}

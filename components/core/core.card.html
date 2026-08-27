@@ -1,0 +1,28 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core" subtitle="Wordmark, pill button, text link, arrows" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;font-family:var(--font-core)}.lbl{font-size:12px;line-height:18px;color:var(--green-75)}</style></head><body>
+<div id="root"></div>
+<script type="text/babel">
+const { Button, TextLink, Arrow, Wordmark } = window.AarsDesignSystem_80df3d;
+const DIRS = ["up","right","down","left","up-left","up-right","down-left","down-right"];
+function Card(){return (
+  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:0}}>
+    <div style={{padding:"22px 24px",display:"flex",flexDirection:"column",gap:18,background:"var(--surface-beige)"}}>
+      <Wordmark height={30} color="var(--aars-oransje)" src="../../assets/logo/aars-wordmark-black.svg" />
+      <div style={{display:"flex",gap:12,alignItems:"center"}}><Button size="mobile">Knapp tekst</Button><Button size="mobile" selected>Knapp tekst</Button></div>
+      <div style={{display:"flex",gap:24,alignItems:"center"}}><TextLink size="caption">Les mer</TextLink><TextLink size="caption" external>Møllersamlingen</TextLink></div>
+      <div style={{display:"flex",gap:14}}>{DIRS.map(d=><Arrow key={d} direction={d} size={16} color="var(--aars-mork-gronn)" />)}</div>
+    </div>
+    <div style={{padding:"22px 24px",display:"flex",flexDirection:"column",gap:18,background:"var(--surface-dark)"}}>
+      <Wordmark height={30} color="var(--beige-50)" src="../../assets/logo/aars-wordmark-black.svg" />
+      <div style={{display:"flex",gap:12,alignItems:"center"}}><Button size="mobile" tone="light">Knapp tekst</Button><Button size="mobile" tone="accent">Godta</Button></div>
+      <div style={{display:"flex",gap:24,alignItems:"center"}}><TextLink size="caption" tone="light">Les mer</TextLink><TextLink size="caption" tone="muted" external>Møllersamlingen</TextLink></div>
+      <div style={{display:"flex",gap:14}}>{DIRS.map(d=><Arrow key={d} direction={d} size={16} color="var(--white)" />)}</div>
+    </div>
+  </div>);}
+ReactDOM.createRoot(document.getElementById("root")).render(<Card/>);
+</script></body></html>

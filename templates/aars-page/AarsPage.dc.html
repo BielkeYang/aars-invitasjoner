@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Aars page" description="Standard aars.no page: floating menu, scrimmed photo hero, dark green key figures, Aktuelt grid, footer." -->
+<helmet><script src="./ds-base.js"></script><style>html,body{margin:0}</style></helmet>
+<div style="position:relative;background:#FFFFFF;font-family:'Tiempos Text',ui-serif,Georgia,serif;color:#203433;overflow-x:hidden">
+<header style="position:absolute;top:50px;left:0;right:0;z-index:5;display:flex;justify-content:center;padding:0 64px"><div style="width:1306px;max-width:100%"><x-import component-from-global-scope="AarsDesignSystem_80df3d.Menu" breakpoint="desktop" tone="light" hint-size="100%,34px"></x-import></div></header>
+<x-import component-from-global-scope="AarsDesignSystem_80df3d.Hero" image="/assets/images/hero-forsiden.jpg" headline="I over 85 år har vi skapt arbeidsplasser og bidratt til å løse samfunnsutfordringer gjennom aktivt eierskap." cta="Les mer om Aars" hint-size="100%,766px"></x-import>
+<section style="background:#203433;padding:56px 64px 72px">
+<h2 style="margin:0 0 44px;font-weight:400;font-size:34px;line-height:44px;text-align:center;color:#FFFFFF">Kort om Aars</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr)">
+<div style="display:flex;align-items:center;justify-content:center;min-height:152px;padding:24px 16px;text-align:center;font-size:34px;line-height:44px;color:#E06900">9<br>selskaper</div>
+<div style="display:flex;align-items:center;justify-content:center;min-height:152px;padding:24px 16px;text-align:center;font-size:34px;line-height:44px;color:#E06900;border-left:1px solid rgba(255,255,255,0.65)">5000<br>ansatte</div>
+<div style="display:flex;align-items:center;justify-content:center;min-height:152px;padding:24px 16px;text-align:center;font-size:34px;line-height:44px;color:#E06900;border-left:1px solid rgba(255,255,255,0.65)">123 m.nok<br>investert</div>
+</div>
+</section>
+<section style="background:#FCF9F7;padding:144px 64px">
+<h2 style="margin:0;font-weight:400;font-size:62px;line-height:74px;text-align:center;color:#E06900">Aktuelt</h2>
+<div style="display:flex;gap:79px;justify-content:center;margin-top:108px">
+<x-import component-from-global-scope="AarsDesignSystem_80df3d.ArticleCard" image="/assets/images/artikkel-generasjonsskifte.png" kicker="Ny styreleder i Aars og Møller Mobility Group" title="Generasjonsskifte og rollebytte" hint-size="384px,520px"></x-import>
+<x-import component-from-global-scope="AarsDesignSystem_80df3d.ArticleCard" image="/assets/images/mollersamlingen-utstilling.jpg" kicker="170 år med fotografi fra Møllersamlingen" title="Eksponert: Utstilling Henie Onstad Kunstsenter" hint-size="384px,520px"></x-import>
+<x-import component-from-global-scope="AarsDesignSystem_80df3d.ArticleCard" image="/assets/images/mote-generasjon.jpg" kicker="Med mulighet til å ta egne valg" title="En eierstruktur for neste generasjon" hint-size="384px,520px"></x-import>
+</div>
+</section>
+<x-import component-from-global-scope="AarsDesignSystem_80df3d.FeatureSplit" image="/assets/images/portrett-familien.png" title="Familien" body="Mye har skjedd med våre virksomheter siden Harald Aars Møller etablerte Strømmen Auto i 1936. Det samme kan sies om eierskapet." cta="Les mer om familien" hint-size="100%,560px"></x-import>
+<x-import component-from-global-scope="AarsDesignSystem_80df3d.Footer" breakpoint="desktop" hint-size="100%,298px"></x-import>
+</div>
+</x-dc>
+</body>
+</html>

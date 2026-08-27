@@ -1,0 +1,31 @@
+/* Aars spacing. Values transcribed from the Figma layouts — the grid is
+   generous rather than tight; whitespace is treated as a brand element. */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-7:32px;
+  --space-8:40px;
+  --space-9:48px;
+  --space-10:64px;
+  --space-11:80px;
+  --space-12:96px;
+  --space-13:144px;
+
+  /* Page gutters */
+  --gutter-desktop:64px;
+  --gutter-tablet:61px;
+  --gutter-mobile:19px;
+
+  /* Content measures */
+  --measure-page:1440px;
+  --measure-text:776px;   /* centred ingress column, desktop */
+  --measure-card:384px;   /* Aktuelt card width, desktop */
+
+  /* Section rhythm */
+  --section-pad-desktop:144px;
+  --section-pad-mobile:64px;
+}

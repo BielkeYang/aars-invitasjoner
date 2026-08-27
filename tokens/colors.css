@@ -1,0 +1,60 @@
+/* Aars colour system.
+   Named brand colours are the values from Aars_Fargepalett_v2.pdf.
+   Tint steps (75/50/25) are the values the Figma file paints; where a step is
+   not painted anywhere in the file it is derived and flagged in readme.md. */
+:root{
+  /* ── Hovedfarger (primary) ─────────────────────────────── */
+  --aars-oransje:#E06900;        /* Pantone 4010c */
+  --aars-beige:#E9CEBD;          /* Pantone 482c */
+  --aars-mork-gronn:#203433;     /* Pantone 4168c */
+
+  /* ── Tilleggsfarger (secondary) ────────────────────────── */
+  --aars-mellomgronn:#0F7855;    /* Pantone 3425c */
+  --aars-lys-gronn:#39AF72;      /* Pantone 2250c */
+  --aars-rosa:#F8A5C1;           /* Pantone 237c */
+  --aars-mork-rod:#943E31;       /* Pantone 7427c */
+
+  /* ── Tint ladders ──────────────────────────────────────── */
+  --orange-100:#E06900;
+  --orange-75:#E48834;
+  --orange-50:#EBAB6B;   /* derived */
+  --orange-25:#F3D3B6;   /* derived */
+
+  --beige-100:#E9CEBD;
+  --beige-75:#F3E6DF;
+  --beige-50:#F6EFEA;
+  --beige-25:#FCF9F7;
+
+  --green-100:#203433;
+  --green-75:#627271;
+  --green-50:#A4AEAD;
+  --green-25:#D1D7D7;
+
+  /* ── Neutrals ──────────────────────────────────────────── */
+  --white:#FFFFFF;
+  --black:#000000;
+
+  /* ── Semantic surfaces ─────────────────────────────────── */
+  --surface-page:#FFFFFF;
+  --surface-cream:#FCF9F7;        /* softest warm page tone */
+  --surface-beige:#F6EFEA;        /* beige section band */
+  --surface-beige-strong:#F3E6DF; /* deepest beige band */
+  --surface-dark:#203433;         /* dark green band, footer, menu bar */
+  --surface-accent:#E06900;       /* full-bleed orange, used sparingly */
+  --surface-card:#FCF9F7;
+
+  /* ── Semantic text ─────────────────────────────────────── */
+  --text-primary:#203433;
+  --text-accent:#E06900;
+  --text-on-dark:#FFFFFF;
+  --text-on-dark-soft:#F6EFEA;
+  --text-on-dark-muted:#A4AEAD;
+  --text-caption:#203433;
+
+  /* ── Lines, overlays, states ───────────────────────────── */
+  --rule-on-light:#203433;
+  --rule-on-dark:rgba(255,255,255,0.65);
+  --rule-hairline:1px;
+  --overlay-image:rgba(78,71,48,0.25); /* warm scrim over photography */
+  --state-muted-opacity:0.65; /* @kind other */
+}

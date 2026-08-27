@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Aarsdagen" description="Event mini-site for Aarsdagen — invitation, programme, sub-pages and sign-up." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>@keyframes aars-burst{0%{transform:translate(0,0) scale(.4);opacity:0}12%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(var(--rot));opacity:0}}html,body{margin:0;background:#F6EFEA}#dc-root,.sc-host{background:#F6EFEA;min-height:100%}*{box-sizing:border-box}a{color:#DF6A00;text-decoration:none;border-bottom:none}a:hover{color:#203433}</style>
+</helmet>
+
+<div style="width:100%;max-width:1280px;margin:0 auto;background:#F6EFEA;overflow-x:clip;display:flex;flex-direction:column;gap:clamp(60px,9vw,120px);padding:0 0 37px 0">
+<div style="display:flex;flex-direction:column;gap:clamp(45px,7vw,90px);align-items:center;width:100%">
+
+<sc-if value="{{ menuOpen }}">
+<div style="position:fixed;inset:0;z-index:200;background:#DF6A00;display:flex;flex-direction:column;padding:30px;gap:clamp(30px,5vw,60px)">
+<div style="display:flex;flex-direction:row;justify-content:space-between;align-items:flex-start">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#FFFFFF">{{ eventDate }}</span>
+<a href="#" onClick="{{ closeMenu }}" aria-label="Lukk" style="font-family:'Tiempos Text',Georgia,serif;font-size:33px;line-height:24px;color:#FFFFFF;text-decoration:none;border-bottom:none;padding:6px 7px" style-hover="color:#F6EFEA">✕</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:clamp(15px,3vw,27px);justify-content:center;flex:1 1 auto">
+<a href="#" onClick="{{ goInvitasjon }}" style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(36px,9vw,72px);line-height:1.05;letter-spacing:-0.020em;color:#F6EFEA;text-decoration:none;border-bottom:none" style-hover="color:#FFFFFF">Invitasjon</a>
+<a href="#" onClick="{{ goProgram }}" style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(36px,9vw,72px);line-height:1.05;letter-spacing:-0.020em;color:#F6EFEA;text-decoration:none;border-bottom:none" style-hover="color:#FFFFFF">Program</a>
+<a href="#" onClick="{{ goDeltagere }}" style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(36px,9vw,72px);line-height:1.05;letter-spacing:-0.020em;color:#F6EFEA;text-decoration:none;border-bottom:none" style-hover="color:#FFFFFF">Deltagere</a>
+<a href="#" onClick="{{ goQa }}" style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(36px,9vw,72px);line-height:1.05;letter-spacing:-0.020em;color:#F6EFEA;text-decoration:none;border-bottom:none" style-hover="color:#FFFFFF">Q&amp;A</a>
+<a href="#" onClick="{{ goRace }}" style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(36px,9vw,72px);line-height:1.05;letter-spacing:-0.020em;color:#F6EFEA;text-decoration:none;border-bottom:none" style-hover="color:#FFFFFF">Amazing Race</a>
+</div>
+<a href="#" onClick="{{ goRsvp }}" style="min-height:55.5px;background:#F6EFEA;display:flex;flex-direction:row;gap:5px;padding:13px 17px 15px 17px;justify-content:center;align-items:center;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;white-space:nowrap;color:#DF6A00;text-decoration:none;border-bottom:none" style-hover="background:#FFFFFF">Meld deg på<svg width="19.445" height="19.445" viewBox="0 0 19.445 19.445" fill="#DF6A00" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 10.917 L 11.263 10.917 L 15.073 10.851 L 8.083 17.786 L 9.739 19.445 L 19.445 9.723 L 9.739 0 L 8.083 1.659 L 15.106 8.628 L 11.263 8.561 L 0 8.561 L 0 10.917 Z" fill-rule="nonzero"></path></svg></a>
+</div>
+</sc-if>
+
+<div style="position:sticky;top:0;z-index:50;min-height:96px;background:#F6EFEA;display:flex;flex-direction:row;flex-wrap:wrap;gap:15px;padding:30px;justify-content:space-between;align-items:flex-start;align-self:stretch">
+<div style="width:auto;min-width:0;height:36px;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none">{{ eventDate }}</span></div>
+<sc-if value="{{ isNarrow }}"><a href="#" onClick="{{ openMenu }}" style="min-height:36px;background:#FFFFFF;display:flex;flex-direction:row;gap:9px;padding:6px 11px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none" style-hover="background:#F0E9E3">Meny<span style="display:flex;flex-direction:column;gap:4px;flex-shrink:0"><span style="display:block;width:19px;height:1px;background:#1E1E1E"></span><span style="display:block;width:19px;height:1px;background:#1E1E1E"></span><span style="display:block;width:19px;height:1px;background:#1E1E1E"></span></span></a></sc-if>
+<sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:15px;justify-content:flex-end;align-items:flex-start">
+<sc-if value="{{ atInvitasjon }}"><a href="#" onClick="{{ goInvitasjon }}" style="height:36px;background:#DF6A00;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none">Invitasjon</a></sc-if><sc-if value="{{ notAtInvitasjon }}" hint-placeholder-val="{{ true }}"><a href="#" onClick="{{ goInvitasjon }}" style="height:36px;background:#FFFFFF;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none" style-hover="background:#F0E9E3">Invitasjon</a></sc-if>
+<sc-if value="{{ atProgram }}"><a href="#" onClick="{{ goProgram }}" style="height:36px;background:#DF6A00;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none">Program</a></sc-if><sc-if value="{{ notAtProgram }}" hint-placeholder-val="{{ true }}"><a href="#" onClick="{{ goProgram }}" style="height:36px;background:#FFFFFF;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none" style-hover="background:#F0E9E3">Program</a></sc-if>
+<sc-if value="{{ atDeltagere }}"><a href="#" onClick="{{ goDeltagere }}" style="height:36px;background:#DF6A00;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none">Deltagere</a></sc-if><sc-if value="{{ notAtDeltagere }}" hint-placeholder-val="{{ true }}"><a href="#" onClick="{{ goDeltagere }}" style="height:36px;background:#FFFFFF;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none" style-hover="background:#F0E9E3">Deltagere</a></sc-if>
+<sc-if value="{{ atQa }}"><a href="#" onClick="{{ goQa }}" style="height:36px;background:#DF6A00;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none">Q&amp;A</a></sc-if><sc-if value="{{ notAtQa }}" hint-placeholder-val="{{ true }}"><a href="#" onClick="{{ goQa }}" style="height:36px;background:#FFFFFF;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none" style-hover="background:#F0E9E3">Q&amp;A</a></sc-if>
+<div onMouseEnter="{{ fireBurst }}" style="position:relative;display:flex;flex-shrink:0"><sc-if value="{{ atRace }}"><a href="#" onClick="{{ goRace }}" style="height:36px;background:#DF6A00;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none">Amazing Race</a></sc-if><sc-if value="{{ notAtRace }}" hint-placeholder-val="{{ true }}"><a href="#" onClick="{{ goRace }}" style="height:36px;background:#FFFFFF;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none" style-hover="background:#F0E9E3">Amazing Race</a></sc-if>{{ raceBurst }}</div>
+</div></sc-if>
+<sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}"><a href="#" onClick="{{ goRsvp }}" style="min-width:148.114px;min-height:32px;background:#DF6A00;display:flex;flex-direction:row;gap:3px;padding:3px 6px 5px 6px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none" style-hover="background:#203433">Meld deg på<svg width="13.516" height="13.516" viewBox="0 0 13.516 13.516" fill="#FFFFFF" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 7.588 L 7.828 7.588 L 10.476 7.542 L 5.618 12.362 L 6.769 13.516 L 13.516 6.758 L 6.769 0 L 5.618 1.153 L 10.499 5.997 L 7.828 5.951 L 0 5.951 L 0 7.588 Z" fill-rule="nonzero"></path></svg></a></sc-if>
+</div>
+
+<sc-if value="{{ isInvitasjon }}">
+<div style="min-height:clamp(110px,22vw,288px);margin-top:-60px;display:flex;flex-direction:row;padding:30px;align-items:flex-end;align-self:stretch">
+<span style="width:100%;font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(56px,21.6vw,276.913px);line-height:clamp(52px,20vw,255.376px);letter-spacing:-0.020em;color:#DF6A00">Aarsdagen</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:clamp(30px,4.5vw,60px);padding:30px;align-items:center;align-self:stretch">
+<div style="width:100%;max-width:593px;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;text-align:center;color:#203433;display:flex;flex-direction:column;gap:33px">
+<p style="margin:0;font-size:clamp(27px,4vw,42px);line-height:1.1">Velkommen!</p>
+<p style="margin:0">Annethvert år samler vi eiere, ledere, eksterne styremedlemmer og medarbeidere fra hele Aars til en felles dag.</p>
+<p style="margin:0">Mye har skjedd siden sist. Ny strategi, nye selskaper i porteføljen og nye kolleger. Samtidig endrer teknologi og geopolitisk uro rammene vi driver innenfor, i et tempo få av oss har opplevd før. Beslutninger må tas raskere, på et mer usikkert grunnlag, med større konsekvenser.</p>
+<p style="margin:0">Vi håper du har satt av dagen, og ser frem til å se deg!</p>
+<p style="margin:0">Øyvind Schage Førde Eier, styreleder og daglig leder</p>
+</div>
+<a href="#" onClick="{{ goRsvp }}" style="min-width:220.5px;min-height:55.5px;background:#DF6A00;display:flex;flex-direction:row;gap:5px;padding:13px 17px 15px 17px;justify-content:center;align-items:center;font-family:'Tiempos Text',Georgia,serif;font-size:27px;line-height:24px;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none" style-hover="background:#203433">Meld deg på<svg width="19.445" height="19.445" viewBox="0 0 19.445 19.445" fill="#FFFFFF" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 10.917 L 11.263 10.917 L 15.073 10.851 L 8.083 17.786 L 9.739 19.445 L 19.445 9.723 L 9.739 0 L 8.083 1.659 L 15.106 8.628 L 11.263 8.561 L 0 8.561 L 0 10.917 Z" fill-rule="nonzero"></path></svg></a>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSub }}">
+<div style="display:flex;flex-direction:column;padding:30px;gap:44px;align-items:center;align-self:stretch">
+<div style="width:100%;max-width:593px;display:flex;flex-direction:column;gap:33px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;color:#203433">{{ subTitle }}</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#203433">{{ subIntro }}</span>
+<sc-if value="{{ showSubCta }}" hint-placeholder-val="{{ true }}">
+<div style="height:34px;display:flex;flex-direction:row;gap:30px;align-items:center">
+<a href="#" onClick="{{ goRsvp }}" style="min-width:148.114px;min-height:32px;background:#DF6A00;display:flex;flex-direction:row;gap:3px;padding:3px 6px 5px 6px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none" style-hover="background:#203433">Meld deg på<svg width="13.516" height="13.516" viewBox="0 0 13.516 13.516" fill="#FFFFFF" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 7.588 L 7.828 7.588 L 10.476 7.542 L 5.618 12.362 L 6.769 13.516 L 13.516 6.758 L 6.769 0 L 5.618 1.153 L 10.499 5.997 L 7.828 5.951 L 0 5.951 L 0 7.588 Z" fill-rule="nonzero"></path></svg></a>
+<a href="#" style="width:205.516px;height:34px;box-shadow:inset 0 0 0 1px #A0A0A0;display:flex;flex-direction:row;gap:10px;padding:3px 6px 5px 6px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;white-space:nowrap;color:#000000;text-decoration:none;border-bottom:none" style-hover="box-shadow:inset 0 0 0 1px #203433">Legg til i kalender<svg width="13.516" height="13.516" viewBox="0 0 13.516 13.516" fill="#000000" style="flex-shrink:0;transform:rotate(90deg)"><path d="M 0 7.588 L 7.828 7.588 L 10.476 7.542 L 5.618 12.362 L 6.769 13.516 L 13.516 6.758 L 6.769 0 L 5.618 1.153 L 10.499 5.997 L 7.828 5.951 L 0 5.951 L 0 7.588 Z" fill-rule="nonzero"></path></svg></a>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDeltagere }}">
+<div style="width:100%;max-width:1218px;display:flex;flex-direction:column;gap:clamp(30px,4.5vw,60px);padding:30px 0">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;color:#203433">Noen av dem du møter</span>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(178px,100%),1fr));gap:30px;max-width:100%">
+<sc-for list="{{ people }}" as="person" hint-placeholder-count="12">
+<div style="display:flex;flex-direction:column;gap:15px">
+<div style="width:100%;aspect-ratio:383 / 574.385;background:url(../../assets/events/aarsdagen-v2-carousel.jpg) center/cover no-repeat"></div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#203433">{{ person.name }}</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:18px;line-height:24px;color:#627271">{{ person.role }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<span style="width:100%;max-width:593px;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Skisse. Navn, roller og portretter fylles på når deltagerlisten er klar.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRsvp }}">
+<div style="display:flex;flex-direction:column;padding:30px;gap:44px;align-items:center;align-self:stretch">
+<div style="width:100%;max-width:593px;display:flex;flex-direction:column;gap:33px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;color:#203433">Meld deg på</span>
+<sc-if value="{{ sent }}"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#DF6A00">Takk! Vi har registrert svaret ditt, og sender praktisk informasjon i god tid før dagen.</span></sc-if>
+<sc-if value="{{ notSent }}">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#203433">Svar innen {{ rsvpDeadline }} så vi får planlagt dagen riktig.</span>
+<form onSubmit="{{ send }}" style="display:flex;flex-direction:column;gap:30px">
+<input type="text" placeholder="Navn" style="min-height:55.5px;background:#FCF9F7;border:none;padding:0 17px;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#203433">
+<input type="email" placeholder="Din epost" style="min-height:55.5px;background:#FCF9F7;border:none;padding:0 17px;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#203433">
+<button type="submit" style="min-width:220.5px;min-height:55.5px;background:#DF6A00;border:none;display:flex;flex-direction:row;gap:5px;padding:13px 17px 15px 17px;justify-content:center;align-items:center;font-family:'Tiempos Text',Georgia,serif;font-size:27px;line-height:24px;white-space:nowrap;color:#FFFFFF;cursor:pointer" style-hover="background:#203433">Send svar<svg width="19.445" height="19.445" viewBox="0 0 19.445 19.445" fill="#FFFFFF" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 10.917 L 11.263 10.917 L 15.073 10.851 L 8.083 17.786 L 9.739 19.445 L 19.445 9.723 L 9.739 0 L 8.083 1.659 L 15.106 8.628 L 11.263 8.561 L 0 8.561 L 0 10.917 Z" fill-rule="nonzero"></path></svg></button>
+</form>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showEventInfo }}" hint-placeholder-val="{{ true }}">
+<div style="width:100%;max-width:1218px;display:flex;flex-direction:row;flex-wrap:wrap;gap:30px;align-items:stretch">
+<div style="flex:1 1 260px;min-height:192px;background:#FFFFFF;display:flex;flex-direction:row;gap:5px;padding:60px 17px;justify-content:center;align-items:center"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;text-align:center;color:#1E1E1E"><span style="color:#DF6A00">Dato</span><br>Onsdag {{ eventDate }}</span></div>
+<div style="flex:1 1 260px;min-height:192px;background:#FFFFFF;display:flex;flex-direction:row;gap:5px;padding:60px 17px;justify-content:center;align-items:center"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;text-align:center;color:#1E1E1E"><span style="color:#DF6A00">Oppstart</span><br>Kl. 12:00 — utover kvelden</span></div>
+<div style="flex:1 1 260px;min-height:192px;background:#FFFFFF;display:flex;flex-direction:row;gap:5px;padding:60px 17px;justify-content:center;align-items:center"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;text-align:center;color:#1E1E1E"><span style="color:#DF6A00">Sted</span><br>Bygdøy Allé 4, Oslo</span></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isQa }}">
+<div style="width:100%;max-width:1218px;display:flex;flex-direction:column;gap:0;padding:30px 0">
+<sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="6">
+<div style="border-top:1px solid #627271">
+<a href="#" onClick="{{ faq.toggle }}" style="display:flex;flex-direction:row;gap:30px;padding:33px 30px;justify-content:space-between;align-items:flex-start;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433;text-decoration:none;border-bottom:none" style-hover="color:#DF6A00">{{ faq.q }}<span style="flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">{{ faq.sign }}</span></a>
+<sc-if value="{{ faq.open }}">
+<div style="display:flex;flex-direction:row;padding:0 30px 33px 30px">
+<span style="width:100%;max-width:757px;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:30px;color:#627271">{{ faq.a }}</span>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<div style="border-top:1px solid #627271"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRace }}">
+<div style="width:100%;max-width:1218px;display:flex;flex-direction:column;gap:clamp(30px,4.5vw,60px);padding:30px 0">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;color:#203433">Lagene</span>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:30px">
+<sc-for list="{{ teams }}" as="team" hint-placeholder-count="9">
+<div style="background:#FFFFFF;display:flex;flex-direction:column;gap:15px;padding:33px 30px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#DF6A00">{{ team.name }}</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{ team.members }}" as="member" hint-placeholder-count="5">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:30px;color:#203433">{{ member }}</span>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="width:100%;max-width:1218px;display:flex;flex-direction:column;gap:clamp(30px,4.5vw,60px);padding:30px 0">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;color:#203433">Oppdateringer fra dagen</span>
+<div style="display:flex;flex-direction:column;gap:0">
+<sc-for list="{{ updates }}" as="post" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:33px 0;border-top:1px solid #627271">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">{{ post.time }}</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">{{ post.title }}</span>
+<span style="width:100%;max-width:757px;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:30px;color:#627271">{{ post.body }}</span>
+</div>
+</div>
+</sc-for>
+<div style="border-top:1px solid #627271"></div>
+</div>
+<span style="width:100%;max-width:593px;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Skisse. Oppdateringer publiseres løpende gjennom dagen.</span>
+</div>
+
+<div style="width:100%;max-width:1218px;background:#FFFFFF;display:flex;flex-direction:row;gap:30px;padding:33px 30px;justify-content:center;align-items:baseline">
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(27px,4vw,42px);line-height:1.1;letter-spacing:-0.020em;color:#DF6A00">{{ count }}</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">deltagere er påmeldt — 45 av dem står på et lag</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ isOtherSub }}">
+<div style="display:flex;flex-direction:row;gap:44px;padding:30px;justify-content:center;align-self:stretch">
+<span style="width:100%;max-width:593px;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;color:#203433">{{ subNote }}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProgram }}">
+<div style="width:100%;max-width:1218px;display:flex;flex-direction:column;gap:clamp(30px,4.5vw,60px);padding:30px 0">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;color:#203433">Dagen i grove trekk</span>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:0 0 33px 0;border-bottom:1px solid #627271">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">12:00</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">Registrering og lunsj</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Bygdøy Allé 4</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:33px 0;border-bottom:1px solid #627271">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">13:00</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">Velkommen og status</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Øyvind Schage Førde</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:33px 0;border-bottom:1px solid #627271">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">14:00</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">Ny strategi</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Navn fylles på</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:33px 0;border-bottom:1px solid #627271">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">15:30</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">Amazing Race</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Lag settes opp på dagen</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:33px 0;border-bottom:1px solid #627271">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">18:00</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">Aperitiff</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Navn fylles på</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:row;gap:clamp(30px,4.5vw,60px);align-items:flex-start;padding:33px 0">
+<span style="width:clamp(72px,11vw,148px);flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#DF6A00">19:00</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.33;color:#203433">Middag og utover kvelden</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Program annonseres senere</span>
+</div>
+</div>
+</div>
+<span style="width:100%;max-width:593px;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;color:#627271">Skisse. Tidspunkter og navn justeres når programmet er klart.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ showCounter }}" hint-placeholder-val="{{ true }}">
+<div style="width:100%;max-width:1218px;background:#FFFFFF;display:flex;flex-direction:column;gap:30px;padding:clamp(45px,7vw,90px) 30px;justify-content:center;align-items:center">
+<span style="font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(48px,9vw,90px);line-height:1;letter-spacing:-0.020em;color:#DF6A00">{{ count }}</span>
+<span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;text-align:center;color:#203433">har meldt seg på Aarsdagen</span>
+<span style="width:100%;max-width:593px;font-family:'Tiempos Text',Georgia,serif;font-size:clamp(20px,2.3vw,27px);line-height:1.22;text-align:center;color:#627271">Bli med du også. Svar innen {{ rsvpDeadline }} så vi får planlagt dagen riktig.</span>
+<a href="#" onClick="{{ goRsvp }}" style="min-width:220.5px;min-height:55.5px;background:#DF6A00;display:flex;flex-direction:row;gap:5px;padding:13px 17px 15px 17px;justify-content:center;align-items:center;font-family:'Tiempos Text',Georgia,serif;font-size:27px;line-height:24px;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none" style-hover="background:#203433">Meld deg på<svg width="19.445" height="19.445" viewBox="0 0 19.445 19.445" fill="#FFFFFF" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 10.917 L 11.263 10.917 L 15.073 10.851 L 8.083 17.786 L 9.739 19.445 L 19.445 9.723 L 9.739 0 L 8.083 1.659 L 15.106 8.628 L 11.263 8.561 L 0 8.561 L 0 10.917 Z" fill-rule="nonzero"></path></svg></a>
+</div>
+</sc-if>
+
+
+<sc-if value="{{ showCarousel }}" hint-placeholder-val="{{ true }}">
+<div style="width:100%;max-width:1276px;display:flex;flex-direction:column;gap:clamp(30px,4.5vw,60px);align-items:center">
+<div style="width:100%;max-width:1216px;min-height:46px;display:flex;flex-direction:column;justify-content:center;align-items:center"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:clamp(27px,4vw,42px);line-height:1.1;text-align:center;color:#203433">Gjenopplev forrige Aarsdag</span></div>
+<div style="position:relative;width:100%;overflow:hidden;padding:0 30px">
+<div style="display:flex;flex-direction:row;gap:33px;transform:{{ trackShift }};transition:transform 700ms cubic-bezier(.33,0,.15,1)">
+<div style="width:min(383px,72vw);aspect-ratio:383 / 574.385;flex-shrink:0;background:url(../../assets/events/aarsdagen-v2-carousel.jpg) center/cover no-repeat"></div>
+<div style="width:min(383px,72vw);aspect-ratio:383 / 574.385;flex-shrink:0;background:url(../../assets/events/aarsdagen-v2-carousel.jpg) center/cover no-repeat"></div>
+<div style="width:min(383px,72vw);aspect-ratio:383 / 574.385;flex-shrink:0;background:url(../../assets/events/aarsdagen-v2-carousel.jpg) center/cover no-repeat"></div>
+<div style="width:min(383px,72vw);aspect-ratio:383 / 574.385;flex-shrink:0;background:url(../../assets/events/aarsdagen-v2-carousel.jpg) center/cover no-repeat"></div>
+</div>
+<button type="button" onClick="{{ prev }}" aria-label="Forrige" style="position:absolute;left:30px;top:38%;width:67.5px;height:67.5px;border:none;border-radius:50%;background:#DF6A00;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#203433"><svg width="19.445" height="19.445" viewBox="0 0 19.445 19.445" fill="#FFFFFF" style="transform:rotate(180deg)"><path d="M 0 10.917 L 11.263 10.917 L 15.073 10.851 L 8.083 17.786 L 9.739 19.445 L 19.445 9.723 L 9.739 0 L 8.083 1.659 L 15.106 8.628 L 11.263 8.561 L 0 8.561 L 0 10.917 Z" fill-rule="nonzero"></path></svg></button>
+<button type="button" onClick="{{ next }}" aria-label="Neste" style="position:absolute;right:30px;top:38%;width:67.5px;height:67.5px;border:none;border-radius:50%;background:#DF6A00;cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:#203433"><svg width="19.445" height="19.445" viewBox="0 0 19.445 19.445" fill="#FFFFFF"><path d="M 0 10.917 L 11.263 10.917 L 15.073 10.851 L 8.083 17.786 L 9.739 19.445 L 19.445 9.723 L 9.739 0 L 8.083 1.659 L 15.106 8.628 L 11.263 8.561 L 0 8.561 L 0 10.917 Z" fill-rule="nonzero"></path></svg></button>
+</div>
+</div>
+
+<sc-if value="{{ isInvitasjon }}">
+<div style="width:100%;max-width:1222px;aspect-ratio:1222 / 795;background:url(../../assets/events/aarsdagen-v2-video.jpg) center/cover no-repeat;display:flex;justify-content:center;align-items:center">
+<div style="width:78px;height:78px;border-radius:50%;background:#DF6A00;display:flex;justify-content:center;align-items:center"><svg width="51.885" height="51.885" viewBox="0 0 51.885 51.885" fill="#FFFFFF" style="transform:rotate(90deg) scale(.62)"><path d="M 25.942 0 L 48.409 38.914 L 3.476 38.914 L 25.942 0 Z" fill-rule="nonzero"></path></svg></div>
+</div>
+</sc-if>
+</sc-if>
+
+<div style="min-height:clamp(110px,22vw,288px);margin-bottom:-60px;display:flex;flex-direction:row;padding:30px;align-items:flex-end;align-self:stretch">
+<span style="width:100%;font-family:'Tiempos Headline',Georgia,serif;font-weight:300;font-size:clamp(56px,21.6vw,276.913px);line-height:clamp(52px,20vw,255.376px);letter-spacing:-0.020em;color:#DF6A00">Aarsdagen</span>
+</div>
+
+<div style="height:96px;background:#F6EFEA;display:flex;flex-direction:row;padding:30px;justify-content:space-between;align-items:flex-start;align-self:stretch">
+<div style="width:auto;min-width:0;height:36px;display:flex;flex-direction:row;padding:6px 7px;justify-content:center;align-items:center;flex-shrink:0"><span style="font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;text-align:center;white-space:nowrap;color:#1E1E1E;text-decoration:none;border-bottom:none">{{ eventDate }}</span></div>
+<a href="#" onClick="{{ goRsvp }}" style="min-width:148.114px;min-height:32px;background:#DF6A00;display:flex;flex-direction:row;gap:3px;padding:3px 6px 5px 6px;justify-content:center;align-items:center;flex-shrink:0;font-family:'Tiempos Text',Georgia,serif;font-size:20px;line-height:24px;white-space:nowrap;color:#FFFFFF;text-decoration:none;border-bottom:none" style-hover="background:#203433">Meld deg på<svg width="13.516" height="13.516" viewBox="0 0 13.516 13.516" fill="#FFFFFF" style="flex-shrink:0;transform:rotate(-45deg)"><path d="M 0 7.588 L 7.828 7.588 L 10.476 7.542 L 5.618 12.362 L 6.769 13.516 L 13.516 6.758 L 6.769 0 L 5.618 1.153 L 10.499 5.997 L 7.828 5.951 L 0 5.951 L 0 7.588 Z" fill-rule="nonzero"></path></svg></a>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;eventDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;4. november 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Arrangement&quot;},&quot;rsvpDeadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;10. oktober&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Arrangement&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'invitasjon', sent: false, slide: 0, count: 0, openFaq: 0, isNarrow: typeof window !== 'undefined' && window.innerWidth < 900, menuOpen: false };
+  copy = {
+    program: {
+      title: 'Foreløpig program',
+      intro: 'Programmet er under utarbeidelse. Hovedlinjene står — detaljer og navn fylles på etter hvert.',
+      note: 'Skisse av program her, visuelt tidslinje i Aars-stil.',
+    },
+    deltagere: {
+      title: 'Deltagere',
+      intro: 'Eiere, ledere, eksterne styremedlemmer og medarbeidere fra hele Aars.',
+      note: 'Oversikt over deltagere her.',
+    },
+    qa: {
+      title: 'Q&A',
+      intro: 'Spørsmål og svar om dagen. Finner du ikke svaret, ta kontakt.',
+      note: 'Spørsmål og svar her.',
+    },
+    race: {
+      title: 'Amazing Race',
+      intro: 'Lagkonkurranse gjennom Oslo, med oppgaver underveis.',
+      note: 'Beskrivelse av Amazing Race her.',
+    },
+  };
+  componentDidMount() {
+    this.syncWidth();
+    window.addEventListener('resize', this.syncWidth);
+    const target = 84;
+    let n = 0;
+    this.rampId = setInterval(() => {
+      n += Math.ceil((target - n) / 6);
+      if (n >= target) { n = target; clearInterval(this.rampId); }
+      this.setState({ count: n });
+    }, 40);
+    this.tickId = setInterval(() => {
+      this.setState((s) => ({ count: s.count + 1 }));
+    }, 9000);
+  }
+  componentWillUnmount() { clearInterval(this.rampId); clearInterval(this.tickId); window.removeEventListener('resize', this.syncWidth); }
+  syncWidth = () => {
+    const w = window.innerWidth;
+    const narrow = w < 900;
+    if (narrow !== this.state.isNarrow) this.setState({ isNarrow: narrow, menuOpen: narrow ? this.state.menuOpen : false });
+  };
+  openMenu = (e) => { e.preventDefault(); this.setState({ menuOpen: true }); };
+  closeMenu = (e) => { if (e) e.preventDefault(); this.setState({ menuOpen: false }); };
+  fireBurst = () => {
+    const n = 18;
+    const parts = Array.from({ length: n }, (_, i) => {
+      const a = (Math.PI * 2 * i) / n + (Math.random() - 0.5) * 0.35;
+      const d = 70 + Math.random() * 70;
+      return { dx: Math.cos(a) * d, dy: Math.sin(a) * d, rot: (Math.random() - 0.5) * 720, delay: Math.random() * 90, size: 15 + Math.random() * 13 };
+    });
+    this.setState((s) => ({ burstKey: (s.burstKey || 0) + 1, parts }));
+  };
+  go(page) { return (e) => { if (e) e.preventDefault(); this.setState({ page, menuOpen: false }); window.scrollTo(0, 0); }; }
+  renderVals() {
+    const p = this.state.page;
+    const sub = this.copy[p];
+    return {
+      eventDate: this.props.eventDate ?? '4. november 2026',
+      rsvpDeadline: this.props.rsvpDeadline ?? '10. oktober',
+      isInvitasjon: p === 'invitasjon', isRsvp: p === 'rsvp', isSub: !!sub,
+      isProgram: p === 'program', isDeltagere: p === 'deltagere',
+      isQa: p === 'qa',
+      showSubCta: p !== 'deltagere' && p !== 'race' && p !== 'qa', isRace: p === 'race',
+      teams: [
+        { name: 'Golf-gjengen', members: ['Sindre Halvorsen', 'Mette Lunde', 'Jonas Aakre', 'Vera Sandnes', 'Kristian Bø'] },
+        { name: 'Quattro-kvintetten', members: ['Ida Framnes', 'Ola Nordbø', 'Hedda Vik', 'Trygve Ås', 'Nora Steinsland'] },
+        { name: 'Octavia-oktetten', members: ['Marius Elden', 'Silje Rønning', 'Fredrik Haugom', 'Ingvild Sæther', 'Petter Løvås'] },
+        { name: 'Passat-patruljen', members: ['Camilla Bråten', 'Even Grøtte', 'Line Myklebust', 'Håkon Rud', 'Astrid Fjeld'] },
+        { name: 'Boblelaget', members: ['Sofie Kvam', 'Anders Tollefsen', 'Randi Solheim', 'Bjørn Ødegård', 'Malin Trydal'] },
+        { name: 'Superb Service', members: ['Erik Nyhus', 'Tuva Berge', 'Simen Dalby', 'Ellen Kirkeby', 'Rolf Aanestad'] },
+        { name: 'Fabia-fireren', members: ['Guro Hovden', 'Lars Emil Stang', 'Kaja Brekke', 'Ove Sandvik', 'Thea Lindgren'] },
+        { name: 'Avant-garde', members: ['Henrik Aalto', 'Iselin Moe', 'Sverre Kolstad', 'Amalie Ringdal', 'Tobias Vestli'] },
+        { name: 'Transporter-troppen', members: ['Frida Melby', 'Are Gundersen', 'Mona Sæbø', 'Kjell Ivar Toft', 'Birgitte Roald'] },
+      ],
+      updates: [
+        { time: '09:15', title: 'Lagene er satt', body: 'Ni lag med fem deltagere hver. Sjekk hvem du kjører med i oversikten over.' },
+        { time: '11:40', title: 'Første oppgave er ute', body: 'Alle lag har fått konvolutten sin. Første post ligger i sentrum.' },
+        { time: '13:05', title: 'Ledelsen skifter', body: 'Octavia-oktetten tar over toppen etter tredje post.' },
+        { time: '15:30', title: 'Siste post', body: 'Alle lag samles på Bygdøy Allé 4 før premieutdeling.' },
+        { time: '17:00', title: 'Vinneren kåres', body: 'Premieutdeling før aperitiffen. Resultatlisten legges ut her.' },
+      ],
+      isOtherSub: !!sub && p !== 'program' && p !== 'deltagere' && p !== 'qa' && p !== 'race',
+      faqs: [
+        { q: 'Når må jeg svare?', a: 'Vi trenger svaret ditt innen ' + (this.props.rsvpDeadline ?? '10. oktober') + '. Da får vi planlagt mat, bord og transport riktig.' },
+        { q: 'Kan jeg ta med følge?', a: 'Invitasjonen gjelder deg. Har du spørsmål om følge, ta kontakt med oss direkte.' },
+        { q: 'Hva er kleskoden?', a: 'Pent, men ikke stivt. Amazing Race foregår ute i Oslo, så ta med sko du kan gå i.' },
+        { q: 'Hvordan kommer jeg meg dit?', a: 'Bygdøy Allé 4 ligger sentralt i Oslo. Buss 30 stopper rett ved, og det er begrenset gateparkering i området.' },
+        { q: 'Må jeg delta på hele dagen?', a: 'Vi håper du blir med fra start til slutt, men si fra hvis du kun kan delta på deler av programmet.' },
+        { q: 'Har du allergier eller andre behov?', a: 'Skriv det i kommentarfeltet når du melder deg på, så tar vi hensyn til det.' },
+      ].map((f, i) => Object.assign({}, f, {
+        open: this.state.openFaq === i,
+        sign: this.state.openFaq === i ? '–' : '+',
+        toggle: (e) => { e.preventDefault(); this.setState((s) => ({ openFaq: s.openFaq === i ? null : i })); },
+      })),
+      people: [
+        { name: 'Navn Navnesen', role: 'Eier' },
+        { name: 'Navn Navnesen', role: 'Styreleder' },
+        { name: 'Navn Navnesen', role: 'Daglig leder' },
+        { name: 'Navn Navnesen', role: 'Investeringsdirektør' },
+        { name: 'Navn Navnesen', role: 'Finansdirektør' },
+        { name: 'Navn Navnesen', role: 'Kommunikasjon' },
+        { name: 'Navn Navnesen', role: 'Eierrepresentant' },
+        { name: 'Navn Navnesen', role: 'Eksternt styremedlem' },
+        { name: 'Navn Navnesen', role: 'Eksternt styremedlem' },
+        { name: 'Navn Navnesen', role: 'Porteføljeselskap' },
+        { name: 'Navn Navnesen', role: 'Porteføljeselskap' },
+        { name: 'Navn Navnesen', role: 'Møllersamlingen' },
+      ],
+      showEventInfo: p === 'invitasjon' || p === 'program' || p === 'rsvp',
+      showCounter: p !== 'race' && p !== 'qa',
+      showCarousel: p !== 'qa',
+      atInvitasjon: p === 'invitasjon', notAtInvitasjon: p !== 'invitasjon',
+      atProgram: p === 'program', notAtProgram: p !== 'program',
+      atDeltagere: p === 'deltagere', notAtDeltagere: p !== 'deltagere',
+      atQa: p === 'qa', notAtQa: p !== 'qa',
+      atRace: p === 'race', notAtRace: p !== 'race',
+      fireBurst: this.fireBurst,
+      isNarrow: !!this.state.isNarrow, isWide: !this.state.isNarrow,
+      menuOpen: !!this.state.menuOpen, openMenu: this.openMenu, closeMenu: this.closeMenu,
+      raceBurst: React.createElement(
+        'span',
+        { key: this.state.burstKey || 0, style: { position: 'absolute', left: '50%', top: '50%', width: 0, height: 0, pointerEvents: 'none', zIndex: 60 } },
+        (this.state.parts || []).map((p2, i) =>
+          React.createElement('span', {
+            key: i,
+            style: {
+              position: 'absolute', left: 0, top: 0, fontSize: p2.size + 'px', lineHeight: 1, willChange: 'transform, opacity',
+              '--dx': p2.dx + 'px', '--dy': p2.dy + 'px', '--rot': p2.rot + 'deg',
+              animation: 'aars-burst 950ms cubic-bezier(.22,.61,.36,1) ' + p2.delay + 'ms forwards',
+            },
+          }, '🚗')
+        )
+      ),
+      subTitle: sub ? sub.title : '', subIntro: sub ? sub.intro : '', subNote: sub ? sub.note : '',
+      sent: this.state.sent, notSent: !this.state.sent, count: this.state.count,
+      goInvitasjon: this.go('invitasjon'), goProgram: this.go('program'), goDeltagere: this.go('deltagere'),
+      goQa: this.go('qa'), goRace: this.go('race'), goRsvp: this.go('rsvp'),
+      send: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      trackShift: 'translateX(-' + this.state.slide * 416 + 'px)',
+      prev: () => this.setState((s) => ({ slide: Math.max(0, s.slide - 1) })),
+      next: () => this.setState((s) => ({ slide: Math.min(1, s.slide + 1) })),
+    };
+  }
+}
+</script>
+</body>
+</html>
